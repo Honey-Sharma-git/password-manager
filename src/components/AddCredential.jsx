@@ -1,9 +1,11 @@
 import { useDispatch } from "react-redux";
 import { addCredential } from "../redux/slice/addCredentialSlice";
 import { useState } from "react";
+import { nanoid } from "@reduxjs/toolkit";
 
 export const AddCredential = () => {
   const [credential, setCredential] = useState({
+    id: "",
     userEmail: "",
     userPassword: "",
   });
@@ -11,7 +13,7 @@ export const AddCredential = () => {
 
   function handleChange(e) {
     setCredential((prev) => {
-      return { ...prev, [e.target.name]: e.target.value };
+      return { ...prev, id: nanoid(), [e.target.name]: e.target.value };
     });
   }
 
