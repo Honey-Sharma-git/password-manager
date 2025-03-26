@@ -1,14 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {};
+const initialState = [];
 
 const addCredentialSlice = createSlice({
   name: "addCredential",
   initialState: initialState,
   reducers: {
-    increment: () => {},
+    addCredential: (state, action) => {
+      state.push(action.payload);
+    },
   },
 });
 
-export const { increment } = addCredentialSlice.actions;
+export const { addCredential } = addCredentialSlice.actions;
 export default addCredentialSlice.reducer;
