@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+*,
+*::after,
+*::before {
+  outline: 1px solid red;
+}
+
+.login-wallpaper {
+  background-image: url("../assets/images/login-wallpaper.svg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: contain;
+}
