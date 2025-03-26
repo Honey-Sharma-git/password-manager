@@ -14,10 +14,15 @@ export const AddCredential = () => {
       return { ...prev, [e.target.name]: e.target.value };
     });
   }
-  
+
   function handleSubmit(e) {
     e.preventDefault();
     dispatch(addCredential(credential));
+    //Resetting input fields:
+    setCredential({
+      userEmail: "",
+      userPassword: "",
+    });
   }
   return (
     <form
