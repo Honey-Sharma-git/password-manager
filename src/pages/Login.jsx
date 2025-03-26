@@ -1,26 +1,37 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+//React icons:
 import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
+import { MdEmail } from "react-icons/md";
+import { RiLockPasswordFill } from "react-icons/ri";
+import { RiTwitterXFill } from "react-icons/ri";
+import { FaFacebookF } from "react-icons/fa";
+import { FiInstagram } from "react-icons/fi";
+import { FaLinkedinIn } from "react-icons/fa6";
+
+//Constants:
+import { baseURL } from "../utils/constant.js";
 
 export const Login = () => {
+  const navigate = useNavigate();
   const [isShown, setIsShown] = useState(false);
   const [token, setToken] = useState("");
   const [loginDetails, setLoginDetails] = useState({
-    email: "virat@gmail.com",
-    password: "12345678",
+    email: "",
+    password: "",
   });
-  const baseURL = "http://domainshare.sublimitysoft.com";
-  function handleInputChange(e) {
-    setLoginDetails((prev) => {
-      return { ...prev, [e.target.name]: e.target.value };
-    });
-  }
 
   function toggleShown() {
     setIsShown((prevState) => {
       return !prevState;
+    });
+  }
+
+  function handleInputChange(e) {
+    setLoginDetails((prev) => {
+      return { ...prev, [e.target.name]: e.target.value };
     });
   }
 
@@ -35,55 +46,122 @@ export const Login = () => {
       });
     }
   }
-  const navigate = useNavigate();
+
   useEffect(() => {
     if (localStorage.getItem("token")) {
       navigate("/dashboard");
     }
   }, [token]);
+
   return (
     <main className="login-wallpaper min-h-screen grid place-content-center ">
-      <article className="p-18 px-42 rounded-lg bg-gray-300/50 backdrop-blur-xs shadow-lg">
-        <form className="flex flex-col gap-5 w-76">
-          <h1 className="text-2xl font-bold">Login</h1>
-          <div className="flex flex-col gap-1">
+      <article className="p-5 px-42 rounded-lg bg-gray-300/50 backdrop-blur-sm shadow-lg">
+        <form className="flex flex-col gap-3 w-76">
+          <div>
+            <h1 className="text-4xl font-bold">Log in</h1>
+            <p className="tracking-widest text-lg">
+              Welcome back!<span className="text-2xl">👋 </span>
+            </p>
+          </div>
+          <div className="flex flex-col gap-1 ">
             <label htmlFor="email">Email:</label>
-            <input
-              onChange={handleInputChange}
-              value={loginDetails.email}
-              className="border p-1 px-2 rounded-sm"
-              type="text"
-              name="email"
-              id="email"
-            />
+            <div className="relative">
+              <div className="absolute translate-y-[-50%] top-[50%] text-lg left-2 text-[#3b387f]">
+                <MdEmail />
+              </div>
+              <input
+                autoFocus
+                autoComplete="off"
+                placeholder="username@example.com"
+                onChange={handleInputChange}
+                value={loginDetails.email}
+                className="border p-2 px-8 rounded-sm w-full focus:border-[#3b387f] focus:border-2 focus:outline-none"
+                type="text"
+                name="email"
+                id="email"
+              />
+            </div>
           </div>
           <div className="flex flex-col gap-1">
             <label htmlFor="password">Password:</label>
             <div className="relative">
+              <div className="absolute translate-y-[-50%] top-[50%] text-lg left-2 text-[#3b387f]">
+                <RiLockPasswordFill />
+              </div>
               <input
                 onChange={handleInputChange}
+                autoComplete="off"
+                placeholder="************"
                 value={loginDetails.password}
-                className="border p-1 px-2 rounded-sm w-full"
+                className="border p-2 px-8 rounded-sm w-full  focus:border-[#3b387f] focus:border-2 focus:outline-none"
                 type={isShown ? "text" : "password"}
                 name="password"
                 id="password"
               />
               <div
-                className="absolute bottom-0 right-2 translate-y-[-50%] cursor-pointer text-lg"
+                className="absolute top-[50%] right-2 translate-y-[-50%] cursor-pointer text-lg text-[#3b387f]"
                 onClick={toggleShown}
               >
                 {isShown ? <FaRegEyeSlash /> : <FaRegEye />}
               </div>
             </div>
           </div>
+          <div className="flex flex-row gap-2 items-center">
+            <input
+              className="bg-transparent "
+              type="checkbox"
+              name="rememberMe"
+              id="rememberMe"
+              defaultChecked={true}
+            />
+            <label htmlFor="rememberMe">Remember me</label>
+          </div>
           <button
-            className="bg-[#6c63ff] text-white p-1 rounded-sm cursor-pointer hover:bg-[#4c45bb]"
+            className="bg-[#3b387f] w-[70%] self-center text-white p-1 rounded-sm cursor-pointer shadow-lg hover:bg-[#4c45bb] mt-2"
             type="submit"
             onClick={getData}
           >
             Login
           </button>
+          <legend>
+            <p className="text-sm text-center">
+              Don't have an account? <br />
+              <a className="hover:text-[#4c45bb] underline " href="">
+                Sign up
+              </a>
+            </p>
+          </legend>
         </form>
+        <address className=" mt-5 flex flex-row text-2xl text-[#3b387f] justify-around ">
+          <a
+            className="hover:text-black hover:shadow-2xl"
+            href="https://www.x.com"
+            target="_blank"
+          >
+            <RiTwitterXFill />
+          </a>
+          <a
+            className="hover:text-black hover:shadow-2xl"
+            href="https://www.facebook.com"
+            target="_blank"
+          >
+            <FaFacebookF />
+          </a>
+          <a
+            className="hover:text-black hover:shadow-2xl"
+            href="https://www.instagram.com"
+            target="_blank"
+          >
+            <FiInstagram />
+          </a>
+          <a
+            className="hover:text-black hover:shadow-2xl"
+            href="https://www.linkedin.com"
+            target="_blank"
+          >
+            <FaLinkedinIn />
+          </a>
+        </address>
       </article>
     </main>
   );
