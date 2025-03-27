@@ -7,9 +7,10 @@ export const Password = ({ item }) => {
   return (
     <div className="relative ">
       <input
+        readOnly
         className="p-1 pr-7  rounded-lg w-full"
         type={isShown ? "text" : "password"}
-        defaultValue={item.password}
+        value={item.password}
       />
       <div
         className="absolute right-2 translate-y-[50%] top-0 cursor-pointer text-[#3b387f] text-lg"
