@@ -1,11 +1,46 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+//Components:
+import { AccountModal } from "./Navbar/AccountModal";
+import { ChangePassword } from "./Navbar/ChangePassword";
+//Constants:
+import { baseURL } from "../utils/constant";
+//React icons:
+import { FaUserAlt } from "react-icons/fa";
+import { MdOutlineDarkMode } from "react-icons/md";
+import { MdOutlineLightMode } from "react-icons/md";
 
 export const Navbar = () => {
-  const [isShown, setIsShown] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isNewPassShown, setIsNewPassShown] = useState(false);
+  const [isConfirmPassShown, setIsConfirmPassShown] = useState(false);
+  const [isAccountShown, setIsAccountShown] = useState(false);
+  const [isChangePassShown, setChangePassShown] = useState(false);
   const navigate = useNavigate();
-  function toggleShown() {
-    setIsShown((prev) => {
+
+  function toggleDarkMode() {
+    setIsDarkMode((prev) => {
+      return !prev;
+    });
+  }
+  function toggleAccountShown() {
+    setIsAccountShown((prev) => {
+      return !prev;
+    });
+  }
+  function toggleNewPassShown() {
+    setIsNewPassShown((prev) => {
+      return !prev;
+    });
+  }
+  function toggleConfirmPassShown() {
+    setIsConfirmPassShown((prev) => {
+      return !prev;
+    });
+  }
+  function changePassword() {
+    setIsAccountShown(false);
+    setChangePassShown((prev) => {
       return !prev;
     });
   }
@@ -13,33 +48,50 @@ export const Navbar = () => {
     localStorage.removeItem("token");
     navigate("/");
   }
-  return (
-    <header className="flex flex-row justify-end p-2 relative">
-      <nav>
-        <button
-          onClick={toggleShown}
-          className="cursor-pointer hover:underline hover:font-bold"
-        >
-          My Account
-        </button>
-      </nav>
 
-      {isShown && (
-        <div className="absolute top-10 bg-amber-300 p-5 flex flex-col gap-5">
-          <p>
-            <span>User:</span> <span>usernotfound</span>
-          </p>
-          <p>
-            <span>Status:</span> <span>Online</span>
-          </p>
+  return (
+    <>
+      <header className="flex flex-row justify-center  p-2  bg-black drop-shadow-lg ">
+        <h1 className="text-white text-3xl mx-auto w-full font-medium ">
+          DASHBOARD
+        </h1>
+        <button
+          onClick={toggleDarkMode}
+          className="text-white text-2xl mr-5 cursor-pointer"
+        >
+          {isDarkMode ? <MdOutlineDarkMode /> : <MdOutlineLightMode />}
+        </button>
+        <nav className="flex space-x-4 ">
           <button
-            onClick={logout}
-            className="cursor-pointer bg-black text-white p-1 rounded-lg"
+            onClick={toggleAccountShown}
+            className="cursor-pointer hover:underline relative hover:font-bold rounded-full p-2 hover:bg-gray-800  text-2xl"
           >
-            Log out
+            {isAccountShown ? (
+              <div className="text-[#4c45bb]">
+                <FaUserAlt />
+              </div>
+            ) : (
+              <div className="text-white">
+                <FaUserAlt />
+              </div>
+            )}
           </button>
-        </div>
+        </nav>
+
+        {isAccountShown && (
+          <AccountModal changePassword={changePassword} logout={logout} />
+        )}
+      </header>
+
+      {isChangePassShown && (
+        <ChangePassword
+          setChangePassShown={setChangePassShown}
+          isNewPassShown={isNewPassShown}
+          toggleNewPassShown={toggleNewPassShown}
+          isConfirmPassShown={isConfirmPassShown}
+          toggleConfirmPassShown={toggleConfirmPassShown}
+        />
       )}
-    </header>
+    </>
   );
 };
