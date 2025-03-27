@@ -6,14 +6,14 @@ import { baseURL } from "../utils/constant";
 import axios from "axios";
 import { addCredential } from "../redux/slice/addCredentialSlice";
 import { useDispatch } from "react-redux";
+import { nanoid } from "@reduxjs/toolkit";
 
 export const TableBody = ({ item, index }) => {
   const dispatch = useDispatch();
-  function deleteDomain(itemID) {
+  async function deleteDomain(itemID) {
     const answer = window.confirm("Do you really want to delete?");
     if (answer) {
-      console.log(itemID);
-      const response = axios.post(
+      const response = await axios.post(
         `${baseURL}/v1/deleteDomain`,
         { id: itemID },
         {
@@ -25,6 +25,32 @@ export const TableBody = ({ item, index }) => {
         }
       );
       dispatch(addCredential());
+    }
+  }
+  async function updatePassword(itemID) {
+    try {
+      const answer = confirm("Do you wish to update password?");
+      if (answer) {
+        const response = await axios.post(
+          `${baseURL}/v1/changeDomain`,
+          {
+            id: itemID,
+            password: nanoid(),
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${JSON.parse(
+                localStorage.getItem("token")
+              )}`,
+            },
+          }
+        );
+        if (response.status === 200) {
+          dispatch(addCredential());
+        }
+      }
+    } catch (error) {
+      console.log(error);
     }
   }
   return (
@@ -57,7 +83,11 @@ export const TableBody = ({ item, index }) => {
           >
             <MdDelete className="hover:text-gray-950 text-gray-500 cursor-pointer" />
           </button>
-          <button>
+          <button
+            onClick={() => {
+              updatePassword(item._id);
+            }}
+          >
             <MdUpdate className="hover:text-gray-950 text-gray-500 cursor-pointer" />
           </button>
         </div>

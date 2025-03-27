@@ -17,7 +17,7 @@ export const Credentials = () => {
       },
     });
     if (response.status === 200 && response.data.statusCode === 200) {
-      setDomains(response.data.posts[0].domains);
+      setDomains([...response.data.posts[0].domains]);
     }
   };
 
