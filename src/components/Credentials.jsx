@@ -1,19 +1,16 @@
-import { useSelector } from "react-redux";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { baseURL } from "../utils/constant";
 import { TableBody } from "./TableBody";
 import { TableHeader } from "./TableHeader";
+import { useDispatch, useSelector } from "react-redux";
 
 export const Credentials = () => {
   const [userDetails, setUserDetails] = useState({});
   const [domains, setDomains] = useState([]);
 
-  const credentialData = useSelector((state) => {
-    return state.addCredential;
-  });
-
-  async function getData() {
+  const data = useSelector((state) => state.addCredential);
+  const getData = async () => {
     const response = await axios.get(`${baseURL}/v1/userDomains`, {
       headers: {
         Authorization: `Bearer ${JSON.parse(localStorage.getItem("token"))}`,
@@ -22,14 +19,14 @@ export const Credentials = () => {
     if (response.status === 200 && response.data.statusCode === 200) {
       setDomains(response.data.posts[0].domains);
     }
-  }
+  };
 
   useEffect(() => {
     getData();
-  }, [domains]);
+  }, [data]);
 
   const credentialElement = domains.map((item, index) => {
-    return <TableBody item={item} index={index} />;
+    return <TableBody key={item._id} item={item} index={index} />;
   });
 
   return (

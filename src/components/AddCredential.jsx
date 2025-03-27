@@ -5,8 +5,11 @@ import { baseURL } from "../utils/constant";
 import { FaUserCircle } from "react-icons/fa";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { RiServerFill } from "react-icons/ri";
+import { useDispatch } from "react-redux";
+import { addCredential } from "../redux/slice/addCredentialSlice";
 
 export const AddCredential = () => {
+  const dispatch = useDispatch();
   const [credential, setCredential] = useState({
     domain: "",
     userName: "",
@@ -29,9 +32,8 @@ export const AddCredential = () => {
         },
       }
     );
-    console.log(response);
     if (response.status === 200 && response.data.statusCode === 201) {
-      console.log("All is well");
+      dispatch(addCredential());
     }
   }
   function handleSubmit(e) {
@@ -62,7 +64,7 @@ export const AddCredential = () => {
             placeholder="JhonDoe"
             value={credential.userName}
             onChange={handleChange}
-            className="border p-1  px-8 rounded-sm "
+            className="border p-1  px-8 rounded-sm"
           />
         </div>
       </div>

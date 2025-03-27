@@ -1,13 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = [];
+const initialState = false;
 
 const addCredentialSlice = createSlice({
   name: "addCredential",
   initialState: initialState,
   reducers: {
     addCredential: (state, action) => {
-      state.push(action.payload);
+      return !state;
     },
   },
 });
