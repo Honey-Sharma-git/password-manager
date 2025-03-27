@@ -8,8 +8,8 @@ import { addCredential } from "../redux/slice/addCredentialSlice";
 import { useDispatch } from "react-redux";
 import { nanoid } from "@reduxjs/toolkit";
 import { useState } from "react";
-
 import { showDomainShareModal } from "../redux/slice/shareDomainModalSlice";
+import { shareDomainID } from "../redux/slice/shareDomainModalSlice";
 
 export const TableBody = ({ item, index }) => {
   const [isShareDomainShown, setIsShareDomainShown] = useState(false);
@@ -58,13 +58,14 @@ export const TableBody = ({ item, index }) => {
     }
   }
 
-  function shareDomain() {
+  function shareDomain(domainID) {
     setIsShareDomainShown((prev) => {
       return !prev;
     });
-    console.log(isShareDomainShown);
     dispatch(showDomainShareModal());
+    dispatch(shareDomainID(domainID));
   }
+
   return (
     <tr key={item._id}>
       <td className="text-left border py-2 px-2 text-gray-500 ">{index}</td>
@@ -87,7 +88,7 @@ export const TableBody = ({ item, index }) => {
         <div className="flex flex-row justify-evenly">
           <button
             onClick={() => {
-              shareDomain();
+              shareDomain(item._id);
             }}
           >
             <FaShareAlt className="hover:text-gray-950 text-gray-500 cursor-pointer" />

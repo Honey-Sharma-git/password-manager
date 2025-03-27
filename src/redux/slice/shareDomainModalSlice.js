@@ -9,8 +9,12 @@ const shareDomainModalSlice = createSlice({
     showDomainShareModal: (state, action) => {
       return !state;
     },
+    shareDomainID: (state, action) => {
+      return action.payload;
+    },
   },
 });
 
 export default shareDomainModalSlice.reducer;
-export const { showDomainShareModal } = shareDomainModalSlice.actions;
+export const { showDomainShareModal, shareDomainID } =
+  shareDomainModalSlice.actions;
