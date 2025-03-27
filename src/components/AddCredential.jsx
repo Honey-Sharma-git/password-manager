@@ -1,29 +1,47 @@
-import { useDispatch } from "react-redux";
-import { addCredential } from "../redux/slice/addCredentialSlice";
 import { useState } from "react";
-import { nanoid } from "@reduxjs/toolkit";
+import axios from "axios";
+import { baseURL } from "../utils/constant";
+//React icons:
+import { FaUserCircle } from "react-icons/fa";
+import { RiLockPasswordFill } from "react-icons/ri";
+import { RiServerFill } from "react-icons/ri";
 
 export const AddCredential = () => {
   const [credential, setCredential] = useState({
-    id: "",
-    userEmail: "",
-    userPassword: "",
+    domain: "",
+    userName: "",
+    password: "",
   });
-  const dispatch = useDispatch();
 
   function handleChange(e) {
     setCredential((prev) => {
-      return { ...prev, id: nanoid(), [e.target.name]: e.target.value };
+      return { ...prev, [e.target.name]: e.target.value };
     });
   }
 
+  async function postData() {
+    const response = await axios.post(
+      `${baseURL}/v1/createDomain`,
+      credential,
+      {
+        headers: {
+          Authorization: `Bearer ${JSON.parse(localStorage.getItem("token"))}`,
+        },
+      }
+    );
+    console.log(response);
+    if (response.status === 200 && response.data.statusCode === 201) {
+      console.log("All is well");
+    }
+  }
   function handleSubmit(e) {
     e.preventDefault();
-    dispatch(addCredential(credential));
-    //Resetting input fields:
+    postData();
+  }
+  function resetFields() {
     setCredential({
-      userEmail: "",
-      userPassword: "",
+      userName: "",
+      password: "",
     });
   }
   return (
@@ -32,33 +50,73 @@ export const AddCredential = () => {
       onSubmit={handleSubmit}
     >
       <div className="flex flex-col items-start gap-2">
-        <label htmlFor="userEmail">Email:</label>
-        <input
-          type="text"
-          name="userEmail"
-          id="userEmail"
-          value={credential.userEmail}
-          onChange={handleChange}
-          className="border p-1 px-2 rounded-sm"
-        />
+        <label htmlFor="userName">Username:</label>
+        <div className="relative">
+          <div className="absolute text-[#3b387f] text-lg top-1/2 -translate-y-1/2 pl-2">
+            <FaUserCircle />
+          </div>
+          <input
+            type="text"
+            name="userName"
+            id="userName"
+            placeholder="JhonDoe"
+            value={credential.userName}
+            onChange={handleChange}
+            className="border p-1  px-8 rounded-sm "
+          />
+        </div>
       </div>
       <div className="flex flex-col items-start gap-2">
-        <label htmlFor="userPassword">Password:</label>
-        <input
-          type="password"
-          name="userPassword"
-          id="userPassword"
-          value={credential.userPassword}
-          onChange={handleChange}
-          className="border p-1 px-2 rounded-sm"
-        />
+        <label htmlFor="password">Password:</label>
+        <div className="relative">
+          <div className="absolute text-[#3b387f] text-lg top-1/2 -translate-y-1/2 pl-2">
+            <RiLockPasswordFill />
+          </div>
+
+          <input
+            type="password"
+            name="password"
+            id="password"
+            placeholder="At least 6 characters long"
+            value={credential.password}
+            onChange={handleChange}
+            className="border p-1  px-8 rounded-sm "
+          />
+        </div>
+      </div>
+      <div className="flex flex-col items-start gap-2">
+        <label htmlFor="domain">Domain:</label>
+        <div className="relative">
+          <div className="absolute text-[#3b387f] text-lg top-1/2 -translate-y-1/2 pl-2">
+            <RiServerFill />
+          </div>
+
+          <input
+            type="text"
+            name="domain"
+            id="domain"
+            placeholder="https://www.example.com"
+            value={credential.userPassword}
+            onChange={handleChange}
+            className="border p-1  px-8 rounded-sm "
+          />
+        </div>
       </div>
       <div className="flex flex-col items-start gap-2 justify-end">
         <button
           type="submit"
-          className="bg-[#6c63ff] text-white p-1 px-10 rounded-sm cursor-pointer hover:bg-[#4c45bb]"
+          className="bg-[#6c63ff] drop-shadow-lg text-white p-1 px-10 rounded-sm cursor-pointer hover:bg-[#4c45bb]"
         >
           Save
+        </button>
+      </div>
+      <div className="flex flex-col items-start gap-2 justify-end">
+        <button
+          onClick={resetFields}
+          type="reset"
+          className="bg-black drop-shadow-lg text-white p-1 px-10 rounded-sm cursor-pointer hover:bg-gray-700"
+        >
+          Reset
         </button>
       </div>
     </form>
