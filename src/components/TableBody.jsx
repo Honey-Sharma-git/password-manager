@@ -7,8 +7,12 @@ import axios from "axios";
 import { addCredential } from "../redux/slice/addCredentialSlice";
 import { useDispatch } from "react-redux";
 import { nanoid } from "@reduxjs/toolkit";
+import { useState } from "react";
+
+import { showDomainShareModal } from "../redux/slice/shareDomainModalSlice";
 
 export const TableBody = ({ item, index }) => {
+  const [isShareDomainShown, setIsShareDomainShown] = useState(false);
   const dispatch = useDispatch();
   async function deleteDomain(itemID) {
     const answer = window.confirm("Do you really want to delete?");
@@ -53,6 +57,14 @@ export const TableBody = ({ item, index }) => {
       console.log(error);
     }
   }
+
+  function shareDomain() {
+    setIsShareDomainShown((prev) => {
+      return !prev;
+    });
+    console.log(isShareDomainShown);
+    dispatch(showDomainShareModal());
+  }
   return (
     <tr key={item._id}>
       <td className="text-left border py-2 px-2 text-gray-500 ">{index}</td>
@@ -73,7 +85,11 @@ export const TableBody = ({ item, index }) => {
       </td>
       <td className=" border items-center  text-2xl text-center py-2 px-2 text-gray-500 ">
         <div className="flex flex-row justify-evenly">
-          <button>
+          <button
+            onClick={() => {
+              shareDomain();
+            }}
+          >
             <FaShareAlt className="hover:text-gray-950 text-gray-500 cursor-pointer" />
           </button>
           <button
