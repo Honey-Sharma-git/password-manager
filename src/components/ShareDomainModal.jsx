@@ -8,6 +8,8 @@ import { IoIosArrowDropdown } from "react-icons/io";
 import { IoIosArrowDropup } from "react-icons/io";
 import { useState } from "react";
 import { useSelector } from "react-redux";
+import axios from "axios";
+import { baseURL } from "../utils/constant";
 
 export const ShareDomainModal = ({ userList }) => {
   const dispatch = useDispatch();
@@ -34,9 +36,21 @@ export const ShareDomainModal = ({ userList }) => {
     });
   }
 
-  function shareUserDomainID(e) {
+  async function shareUserDomainID(e) {
     e.preventDefault();
-    //Need to call api here
+    userIdDomainId.forEach(async (userdomain) => {
+      const response = await axios.post(
+        `${baseURL}/v1/shareDomain`,
+        userdomain,
+        {
+          headers: {
+            Authorization: `Bearer ${JSON.parse(
+              localStorage.getItem("token")
+            )}`,
+          },
+        }
+      );
+    });
   }
   return (
     <aside className="min-h-screen z-50 bg-black/80 absolute inset-0 flex flex-row justify-center  items-start p-10">
