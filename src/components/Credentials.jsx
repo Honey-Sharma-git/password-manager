@@ -4,12 +4,19 @@ import { baseURL } from "../utils/constant";
 import { TableBody } from "./TableBody";
 import { TableHeader } from "./TableHeader";
 import { useDispatch, useSelector } from "react-redux";
+import { setDomains } from "../redux/slice/domainsSlice";
 
 export const Credentials = () => {
+  const dispatch = useDispatch();
+  const domains = useSelector((state) => {
+    return state.domains;
+  });
   const [userDetails, setUserDetails] = useState({});
-  const [domains, setDomains] = useState([]);
+  // const [domains, setDomains] = useState([]);
 
-  const data = useSelector((state) => state.addCredential);
+  const data = useSelector((state) => {
+    return state.addCredential;
+  });
   const getData = async () => {
     const response = await axios.get(`${baseURL}/v1/userDomains`, {
       headers: {
@@ -17,13 +24,27 @@ export const Credentials = () => {
       },
     });
     if (response.status === 200 && response.data.statusCode === 200) {
-      setDomains([...response.data.posts[0].domains]);
+      dispatch(setDomains([...response.data.posts[0].domains]));
     }
   };
 
   useEffect(() => {
     getData();
   }, [data]);
+
+  console.log(
+    domains.toSorted((a, b) => {
+      let x = a.userName.toLowerCase();
+      let y = b.userName.toLowerCase();
+      if (x > y) {
+        return 1;
+      }
+      if (x < y) {
+        return -1;
+      }
+      return 0;
+    })
+  );
 
   const credentialElement = domains.map((item, index) => {
     return <TableBody key={item._id} item={item} index={index} />;
