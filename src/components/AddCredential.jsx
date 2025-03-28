@@ -7,6 +7,7 @@ import { RiLockPasswordFill } from "react-icons/ri";
 import { RiServerFill } from "react-icons/ri";
 import { useDispatch } from "react-redux";
 import { addCredential } from "../redux/slice/addCredentialSlice";
+import { alert } from "../utils/alert";
 
 export const AddCredential = () => {
   const dispatch = useDispatch();
@@ -23,17 +24,25 @@ export const AddCredential = () => {
   }
 
   async function postData() {
-    const response = await axios.post(
-      `${baseURL}/v1/createDomain`,
-      credential,
-      {
-        headers: {
-          Authorization: `Bearer ${JSON.parse(localStorage.getItem("token"))}`,
-        },
+    try {
+      const response = await axios.post(
+        `${baseURL}/v1/createDomain`,
+        credential,
+        {
+          headers: {
+            Authorization: `Bearer ${JSON.parse(
+              localStorage.getItem("token")
+            )}`,
+          },
+        }
+      );
+      if (response.status === 200 && response.data.statusCode === 201) {
+        dispatch(addCredential());
+        alert("SUCCESS", "Domain data saved!");
       }
-    );
-    if (response.status === 200 && response.data.statusCode === 201) {
-      dispatch(addCredential());
+    } catch (error) {
+      console.log("Error on /createDomain API", error);
+      alert("ERROR", "Opps! some error occurred.");
     }
   }
   function handleSubmit(e) {
@@ -115,7 +124,9 @@ export const AddCredential = () => {
         </div>
         <div className="flex flex-col items-start gap-2 justify-end">
           <button
-            onClick={resetFields}
+            onClick={() => {
+              resetFields();
+            }}
             type="reset"
             className="bg-[var(--theme-secondary-color)] drop-shadow-lg text-white p-1 px-10 rounded-sm cursor-pointer hover:bg-[var(--theme-secondary-hover-color)]"
           >
