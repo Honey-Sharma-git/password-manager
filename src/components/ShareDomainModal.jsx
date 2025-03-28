@@ -51,6 +51,7 @@ export const ShareDomainModal = ({ userList }) => {
         }
       );
     });
+    dispatch(showDomainShareModal());
   }
   return (
     <aside className="min-h-screen z-50 bg-black/80 absolute inset-0 flex flex-row justify-center  items-start p-10">
