@@ -1,4 +1,4 @@
-export const AccountModal = ({ changePassword, logout }) => {
+export const AccountModal = ({ changePassword, logout, currLoggedInUser }) => {
   return (
     <div
       className="absolute top-11 right-5  flex flex-col gap-5 rounded-lg w-62 z-50 p-5 bg-gray-100/80 backdrop-blur-3xl shadow-lg
@@ -7,11 +7,11 @@ export const AccountModal = ({ changePassword, logout }) => {
       <h3 className="font-bold text-2xl">Account details</h3>
       <p className="flex flex-row flex-wrap gap-3 justify-start hover:bg-gray-200 p-1">
         <span className="w-12 font-bold">User:</span>
-        <span>Virat Kholi</span>
+        <span>{currLoggedInUser.name}</span>
       </p>
       <p className="flex flex-row flex-wrap gap-3 justify-start hover:bg-gray-200 p-1">
         <span className="w-12 font-bold">Email:</span>
-        <span>virat@gmail.com</span>
+        <span>{currLoggedInUser.email}</span>
       </p>
       <button
         onClick={changePassword}

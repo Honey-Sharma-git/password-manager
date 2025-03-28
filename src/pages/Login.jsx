@@ -39,6 +39,7 @@ export const Login = () => {
     e.preventDefault();
     const response = await axios.post(`${baseURL}/v1/login`, loginDetails);
     if (response.data.statusCode === 201 && response.status === 200) {
+      localStorage.setItem("currUserID", JSON.stringify(response.data.id));
       setToken(() => {
         const token = JSON.stringify(response.data.token);
         localStorage.setItem("token", token);
