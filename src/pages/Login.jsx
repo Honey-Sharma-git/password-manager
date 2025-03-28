@@ -67,7 +67,7 @@ export const Login = () => {
           <div className="flex flex-col gap-1 ">
             <label htmlFor="email">Email:</label>
             <div className="relative">
-              <div className="absolute translate-y-[-50%] top-[50%] text-lg left-2 text-[#3b387f]">
+              <div className="absolute translate-y-[-50%] top-[50%] text-lg left-2 text-[var(--theme-primary-color)]">
                 <MdEmail />
               </div>
               <input
@@ -76,7 +76,7 @@ export const Login = () => {
                 placeholder="username@example.com"
                 onChange={handleInputChange}
                 value={loginDetails.email}
-                className="border p-2 px-8 rounded-sm w-full focus:border-[#3b387f] focus:border-2 focus:outline-none"
+                className="border p-2 px-8 rounded-sm w-full focus:border-[var(--theme-primary-color)] focus:border-2 focus:outline-none"
                 type="text"
                 name="email"
                 id="email"
@@ -86,7 +86,7 @@ export const Login = () => {
           <div className="flex flex-col gap-1">
             <label htmlFor="password">Password:</label>
             <div className="relative">
-              <div className="absolute translate-y-[-50%] top-[50%] text-lg left-2 text-[#3b387f]">
+              <div className="absolute translate-y-[-50%] top-[50%] text-lg left-2 text-[var(--theme-primary-color)]">
                 <RiLockPasswordFill />
               </div>
               <input
@@ -94,13 +94,13 @@ export const Login = () => {
                 autoComplete="off"
                 placeholder="************"
                 value={loginDetails.password}
-                className="border p-2 px-8 rounded-sm w-full  focus:border-[#3b387f] focus:border-2 focus:outline-none"
+                className="border p-2 px-8 rounded-sm w-full  focus:border-[var(--theme-primary-color)] focus:border-2 focus:outline-none"
                 type={isShown ? "text" : "password"}
                 name="password"
                 id="password"
               />
               <div
-                className="absolute top-[50%] right-2 translate-y-[-50%] cursor-pointer text-lg text-[#3b387f]"
+                className="absolute top-[50%] right-2 translate-y-[-50%] cursor-pointer text-lg text-[var(--theme-primary-color)]"
                 onClick={toggleShown}
               >
                 {isShown ? <FaRegEyeSlash /> : <FaRegEye />}
@@ -118,7 +118,7 @@ export const Login = () => {
             <label htmlFor="rememberMe">Remember me</label>
           </div>
           <button
-            className="bg-[#3b387f] w-[70%] self-center text-white p-1 rounded-sm cursor-pointer shadow-lg hover:bg-[#4c45bb] mt-2"
+            className="bg-[var(--theme-primary-color)] w-[70%] self-center text-white p-1 rounded-sm cursor-pointer shadow-lg hover:bg-[var(--theme-primary-hover-color)] mt-2"
             type="submit"
             onClick={getData}
           >
@@ -127,36 +127,39 @@ export const Login = () => {
           <legend>
             <p className="text-sm text-center">
               Don't have an account? <br />
-              <a className="hover:text-[#4c45bb] underline " href="">
+              <a
+                className="hover:text-[var(--theme-primary-hover-color)] underline "
+                href=""
+              >
                 Sign up
               </a>
             </p>
           </legend>
         </form>
-        <address className=" mt-5 flex flex-row text-2xl text-[#3b387f] justify-around ">
+        <address className=" mt-5 flex flex-row text-2xl text-[var(--theme-primary-color)] justify-around ">
           <a
-            className="hover:text-black hover:shadow-2xl"
+            className="hover:text-[var(--theme-primary-hover-color)] hover:shadow-2xl"
             href="https://www.x.com"
             target="_blank"
           >
             <RiTwitterXFill />
           </a>
           <a
-            className="hover:text-black hover:shadow-2xl"
+            className="hover:text-[var(--theme-primary-hover-color)] hover:shadow-2xl"
             href="https://www.facebook.com"
             target="_blank"
           >
             <FaFacebookF />
           </a>
           <a
-            className="hover:text-black hover:shadow-2xl"
+            className="hover:text-[var(--theme-primary-hover-color)] hover:shadow-2xl"
             href="https://www.instagram.com"
             target="_blank"
           >
             <FiInstagram />
           </a>
           <a
-            className="hover:text-black hover:shadow-2xl"
+            className="hover:text-[var(--theme-primary-hover-color)] hover:shadow-2xl"
             href="https://www.linkedin.com"
             target="_blank"
           >

@@ -6,6 +6,14 @@
   /* outline: 1px solid red; */
 }
 
+:root {
+  --theme-primary-color: #4c45bb;
+  --theme-primary-hover-color: #3b387f;
+  /* --theme-secondary-color: #45bbb1; */
+  /* --theme-secondary-hover-color: #3aa59d; */
+  --theme-secondary-color: black;
+  --theme-secondary-hover-color: #444444;
+}
 .login-wallpaper {
   background-image: url("../assets/images/login-wallpaper.svg");
   background-repeat: no-repeat;

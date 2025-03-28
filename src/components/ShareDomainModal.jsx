@@ -67,7 +67,7 @@ export const ShareDomainModal = ({ userList }) => {
         </legend>
         <button
           onClick={toggleDropdown}
-          className="cursor-pointer border rounded-lg hover:border-none p-2 w-full flex flex-row items-center justify-between tracking-widest hover:bg-black"
+          className="cursor-pointer border  rounded-lg hover:border-none p-2 w-full flex flex-row items-center justify-between tracking-widest hover:bg-black"
         >
           <span className="flex flex-row justify-center w-full">
             <span>User list</span>
@@ -77,7 +77,7 @@ export const ShareDomainModal = ({ userList }) => {
           </span>
         </button>
         {isDropdownShown && (
-          <div className=" overflow-auto h-34 border">
+          <div className=" overflow-auto h-34 border ">
             {userList.map((user) => {
               return (
                 <div
@@ -85,7 +85,7 @@ export const ShareDomainModal = ({ userList }) => {
                     handleUserSelection(user._id);
                   }}
                   key={user._id}
-                  className=" px-2 hover:bg-gray-500 border cursor-pointer w-full flex flex-row gap-3"
+                  className=" px-2 hover:bg-gray-500 border  cursor-pointer w-full flex flex-row gap-3"
                 >
                   <input type="checkbox" name={user.name} id={user.name} />
                   <label
@@ -102,7 +102,7 @@ export const ShareDomainModal = ({ userList }) => {
         <div className="flex flex-row justify-center">
           <button
             onClick={shareUserDomainID}
-            className="cursor-pointer p-1 px-20 rounded-sm bg-[#3b387f] hover:bg-[#4c45bb]"
+            className="cursor-pointer p-1 px-20 rounded-sm bg-[var(--theme-primary-color)] hover:bg-[var(--theme-primary-hover-color)]"
             type="submit"
           >
             Share

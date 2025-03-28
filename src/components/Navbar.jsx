@@ -62,15 +62,13 @@ export const Navbar = () => {
         },
       }
     );
-    // console.log(response.data.posts);
     if (response.status === 200) {
       setCurrLoggedInUser(...response.data.posts);
     }
   }
-  // console.log(currLoggedInUser);
   return (
     <>
-      <header className="flex flex-row justify-center  p-2  bg-black drop-shadow-lg relative z-50 ">
+      <header className="flex flex-row justify-center  p-2 bg-black drop-shadow-lg relative z-50 ">
         <h1 className="text-white text-3xl mx-auto w-full font-medium ">
           DASHBOARD
         </h1>
@@ -101,7 +99,11 @@ export const Navbar = () => {
         </nav>
 
         {isAccountShown && (
-          <AccountModal changePassword={changePassword} logout={logout} currLoggedInUser={currLoggedInUser} />
+          <AccountModal
+            changePassword={changePassword}
+            logout={logout}
+            currLoggedInUser={currLoggedInUser}
+          />
         )}
       </header>
 

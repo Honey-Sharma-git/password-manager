@@ -54,7 +54,7 @@ export const AddCredential = () => {
       <div className="flex flex-col items-start gap-2">
         <label htmlFor="userName">Username:</label>
         <div className="relative">
-          <div className="absolute text-[#3b387f] text-lg top-1/2 -translate-y-1/2 pl-2">
+          <div className="absolute text-[var(--theme-primary-color)] text-lg top-1/2 -translate-y-1/2 pl-2">
             <FaUserCircle />
           </div>
           <input
@@ -71,7 +71,7 @@ export const AddCredential = () => {
       <div className="flex flex-col items-start gap-2">
         <label htmlFor="password">Password:</label>
         <div className="relative">
-          <div className="absolute text-[#3b387f] text-lg top-1/2 -translate-y-1/2 pl-2">
+          <div className="absolute text-[var(--theme-primary-color)] text-lg top-1/2 -translate-y-1/2 pl-2">
             <RiLockPasswordFill />
           </div>
 
@@ -89,7 +89,7 @@ export const AddCredential = () => {
       <div className="flex flex-col items-start gap-2">
         <label htmlFor="domain">Domain:</label>
         <div className="relative">
-          <div className="absolute text-[#3b387f] text-lg top-1/2 -translate-y-1/2 pl-2">
+          <div className="absolute text-[var(--theme-primary-color)] text-lg top-1/2 -translate-y-1/2 pl-2">
             <RiServerFill />
           </div>
 
@@ -108,7 +108,7 @@ export const AddCredential = () => {
         <div className="flex flex-col items-start gap-2 justify-end">
           <button
             type="submit"
-            className="bg-[#6c63ff] drop-shadow-lg text-white p-1 px-10 rounded-sm cursor-pointer hover:bg-[#4c45bb]"
+            className="bg-[var(--theme-primary-color)] drop-shadow-lg text-white p-1 px-10 rounded-sm cursor-pointer hover:bg-[var(--theme-primary-hover-color)]"
           >
             Save
           </button>
@@ -117,7 +117,7 @@ export const AddCredential = () => {
           <button
             onClick={resetFields}
             type="reset"
-            className="bg-black drop-shadow-lg text-white p-1 px-10 rounded-sm cursor-pointer hover:bg-gray-700"
+            className="bg-[var(--theme-secondary-color)] drop-shadow-lg text-white p-1 px-10 rounded-sm cursor-pointer hover:bg-[var(--theme-secondary-hover-color)]"
           >
             Reset
           </button>

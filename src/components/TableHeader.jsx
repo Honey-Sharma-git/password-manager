@@ -12,11 +12,11 @@ export const TableHeader = ({ domains }) => {
     });
   }
   return (
-    <thead className="sticky top-0 bg-[#4c45bb] text-white z-10">
+    <thead className="sticky top-0 bg-[var(--theme-primary-color)] text-white z-10">
       <tr>
         <th
           onClick={toggleSort}
-          className="px-4 py-1 text-left border cursor-pointer hover:bg-[#3b387f]"
+          className="px-4 py-1 text-left border cursor-pointer hover:bg-[var(--theme-primary-hover-color)]"
         >
           <div className="flex flex-row items-center justify-between">
             <span> Index</span>
@@ -39,7 +39,7 @@ export const TableHeader = ({ domains }) => {
               })
             );
           }}
-          className="px-4 py-1 text-left border cursor-pointer hover:bg-[#3b387f]"
+          className="px-4 py-1 text-left border cursor-pointer hover:bg-[var(--theme-primary-hover-color)]"
         >
           <div className="flex flex-row items-center justify-between">
             <span> User Name</span>
@@ -62,7 +62,7 @@ export const TableHeader = ({ domains }) => {
               })
             );
           }}
-          className="px-4 py-1 text-left border cursor-pointer hover:bg-[#3b387f]"
+          className="px-4 py-1 text-left border cursor-pointer hover:bg-[var(--theme-primary-hover-color)]"
         >
           <div className="flex flex-row items-center justify-between">
             <span> Password</span>
@@ -85,7 +85,7 @@ export const TableHeader = ({ domains }) => {
               })
             );
           }}
-          className="px-4 py-1 text-left border cursor-pointer hover:bg-[#3b387f]"
+          className="px-4 py-1 text-left border cursor-pointer hover:bg-[var(--theme-primary-hover-color)]"
         >
           <div className="flex flex-row items-center justify-between">
             <span> Domains</span>
@@ -100,7 +100,7 @@ export const TableHeader = ({ domains }) => {
         </th>
         <th
           onClick={toggleSort}
-          className="px-4 py-1 text-left border cursor-pointer hover:bg-[#3b387f]"
+          className="px-4 py-1 text-left border cursor-pointer hover:bg-[var(--theme-primary-hover-color)]"
         >
           <div className="flex flex-row items-center justify-between">
             <span> Actions</span>

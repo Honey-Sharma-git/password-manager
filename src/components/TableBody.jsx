@@ -68,44 +68,44 @@ export const TableBody = ({ item, index }) => {
 
   return (
     <tr key={item._id}>
-      <td className="text-left border py-2 px-2 text-gray-500 ">{index}</td>
-      <td className="text-left border py-2 px-2 text-gray-500 ">
+      <td className="text-left border py-2 px-2 text-black ">{index}</td>
+      <td className="text-left border py-2 px-2 text-black ">
         {item.userName}
       </td>
-      <td className="text-left border py-2 px-2 text-gray-500 ">
+      <td className="text-left border py-2 px-2 text-black ">
         <Password item={item} />
       </td>
-      <td className="text-left border py-2 px-2 text-gray-500 ">
+      <td className="text-left border py-2 px-2 text-black ">
         <a
-          className="text-blue-600 hover:text-blue-800 underline
+          className="text-black hover:text-blue-800 underline
 "
           href={item.domain}
         >
           {item.domain}
         </a>
       </td>
-      <td className=" border items-center  text-2xl text-center py-2 px-2 text-gray-500 ">
+      <td className=" border items-center  text-2xl text-center py-2 px-2 text-black ">
         <div className="flex flex-row justify-evenly">
           <button
             onClick={() => {
               shareDomain(item._id);
             }}
           >
-            <FaShareAlt className="hover:text-gray-950 text-gray-500 cursor-pointer" />
+            <FaShareAlt className="hover:text-[var(--theme-secondary-hover-color)] text-[var(--theme-secondary-color)] cursor-pointer" />
           </button>
           <button
             onClick={() => {
               deleteDomain(item._id);
             }}
           >
-            <MdDelete className="hover:text-gray-950 text-gray-500 cursor-pointer" />
+            <MdDelete className="hover:text-[var(--theme-secondary-hover-color)] text-[var(--theme-secondary-color)] cursor-pointer" />
           </button>
           <button
             onClick={() => {
               updatePassword(item._id);
             }}
           >
-            <MdUpdate className="hover:text-gray-950 text-gray-500 cursor-pointer" />
+            <MdUpdate className="hover:text-[var(--theme-secondary-hover-color)] text-[var(--theme-secondary-color)] cursor-pointer" />
           </button>
         </div>
       </td>
