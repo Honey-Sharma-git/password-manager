@@ -17,7 +17,6 @@ export const AddCredential = () => {
     userName: "",
     password: "",
   });
-  // const [inputOutline, setInputOutline] = useState("");
   const [isInputValid, setIsInputValid] = useState({
     nameField: {
       isUserNameValid: false,
@@ -70,6 +69,26 @@ export const AddCredential = () => {
     setCredential({
       userName: "",
       password: "",
+    });
+    hideInputFeedback();
+  }
+  function hideInputFeedback() {
+    setIsInputValid((prev) => {
+      return {
+        ...prev,
+        nameField: {
+          isUserNameValid: false,
+          nameInputOutline: "outline-[var(--theme-primary-color)]",
+        },
+        passwordField: {
+          isPasswordValid: false,
+          passwordInputOutline: "outline-[var(--theme-primary-color)]",
+        },
+        domainField: {
+          isDomainValid: false,
+          domainInputOutline: "outline-[var(--theme-primary-color)]",
+        },
+      };
     });
   }
   return (
@@ -167,9 +186,9 @@ export const AddCredential = () => {
             </button>
           </div>
         </div>
-        {(isInputValid.isUserNameValid ||
-          isInputValid.isPasswordValid ||
-          isInputValid.isDomainValid) && (
+        {(isInputValid.nameField.isUserNameValid ||
+          isInputValid.passwordField.isPasswordValid ||
+          isInputValid.domainField.isDomainValid) && (
           <strong className=" h-5 text-xs text-red-500 font-light"></strong>
         )}
       </div>
