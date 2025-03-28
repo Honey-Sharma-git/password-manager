@@ -51,7 +51,7 @@ export const Navbar = () => {
 
   return (
     <>
-      <header className="flex flex-row justify-center  p-2  bg-black drop-shadow-lg ">
+      <header className="flex flex-row justify-center  p-2  bg-black drop-shadow-lg relative z-50 ">
         <h1 className="text-white text-3xl mx-auto w-full font-medium ">
           DASHBOARD
         </h1>
@@ -64,7 +64,7 @@ export const Navbar = () => {
         <nav className="flex space-x-4 ">
           <button
             onClick={toggleAccountShown}
-            className="cursor-pointer hover:underline relative hover:font-bold rounded-full p-2 hover:bg-gray-800  text-2xl"
+            className="cursor-pointer hover:underline  hover:font-bold rounded-full p-2 hover:bg-gray-800  text-2xl"
           >
             {isAccountShown ? (
               <div className="text-[#4c45bb]">

@@ -37,7 +37,7 @@ export const ChangePassword = ({
 
   return (
     <aside className=" flex flex-row justify-center z-50 absolute min-h-screen w-full bg-gray-500/50 p-5">
-      <form className="flex flex-col gap-3 z-50 bg-gray-100/50 backdrop-blur-sm shadow-lg w-1/3 p-5 rounded-lg absolute ">
+      <form className="flex flex-col gap-3 z-50 bg-gray-100/50 backdrop-blur-sm shadow-lg sm:w-1/3 p-5 rounded-lg absolute ">
         <figure
           onClick={() => {
             setChangePassShown(false);

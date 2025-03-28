@@ -48,7 +48,7 @@ export const AddCredential = () => {
   }
   return (
     <form
-      className="flex flex-row gap-5 p-5 justify-center "
+      className="flex flex-row gap-5 p-5 justify-center flex-wrap"
       onSubmit={handleSubmit}
     >
       <div className="flex flex-col items-start gap-2">
@@ -104,22 +104,24 @@ export const AddCredential = () => {
           />
         </div>
       </div>
-      <div className="flex flex-col items-start gap-2 justify-end">
-        <button
-          type="submit"
-          className="bg-[#6c63ff] drop-shadow-lg text-white p-1 px-10 rounded-sm cursor-pointer hover:bg-[#4c45bb]"
-        >
-          Save
-        </button>
-      </div>
-      <div className="flex flex-col items-start gap-2 justify-end">
-        <button
-          onClick={resetFields}
-          type="reset"
-          className="bg-black drop-shadow-lg text-white p-1 px-10 rounded-sm cursor-pointer hover:bg-gray-700"
-        >
-          Reset
-        </button>
+      <div className="flex flex-row gap-5">
+        <div className="flex flex-col items-start gap-2 justify-end">
+          <button
+            type="submit"
+            className="bg-[#6c63ff] drop-shadow-lg text-white p-1 px-10 rounded-sm cursor-pointer hover:bg-[#4c45bb]"
+          >
+            Save
+          </button>
+        </div>
+        <div className="flex flex-col items-start gap-2 justify-end">
+          <button
+            onClick={resetFields}
+            type="reset"
+            className="bg-black drop-shadow-lg text-white p-1 px-10 rounded-sm cursor-pointer hover:bg-gray-700"
+          >
+            Reset
+          </button>
+        </div>
       </div>
     </form>
   );

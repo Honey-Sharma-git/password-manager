@@ -54,9 +54,9 @@ export const Login = () => {
   }, [token]);
 
   return (
-    <main className="login-wallpaper min-h-screen grid place-content-center ">
-      <article className="p-5 px-42 rounded-lg bg-gray-300/50 backdrop-blur-sm shadow-lg">
-        <form className="flex flex-col gap-3 w-76">
+    <main className="login-wallpaper min-h-screen flex flex-row items-center justify-center ">
+      <article className="p-2 sm:p-5 sm:w-1/2 sm:px-15  md:px-21 rounded-lg bg-gray-300/50 backdrop-blur-sm shadow-lg">
+        <form className="flex flex-col gap-3 w-full">
           <div>
             <h1 className="text-4xl font-bold">Log in</h1>
             <p className="tracking-widest text-lg">
