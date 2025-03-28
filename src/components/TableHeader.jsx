@@ -1,7 +1,10 @@
 import { useState } from "react";
 import { HiOutlineSortAscending } from "react-icons/hi";
 import { HiOutlineSortDescending } from "react-icons/hi";
-export const TableHeader = () => {
+import { sortDomains } from "../redux/slice/domainsSlice";
+import { useDispatch } from "react-redux";
+export const TableHeader = ({ domains }) => {
+  const dispatch = useDispatch();
   const [isSort, setIsSort] = useState(false);
   function toggleSort() {
     setIsSort((prev) => {
@@ -29,6 +32,12 @@ export const TableHeader = () => {
         <th
           onClick={() => {
             toggleSort();
+            dispatch(
+              sortDomains({
+                sortBy: "userName",
+                sortOrder: isSort ? "asc" : "dsc",
+              })
+            );
           }}
           className="px-4 py-1 text-left border cursor-pointer hover:bg-[#3b387f]"
         >
@@ -44,7 +53,15 @@ export const TableHeader = () => {
           </div>
         </th>
         <th
-          onClick={toggleSort}
+          onClick={() => {
+            toggleSort();
+            dispatch(
+              sortDomains({
+                sortBy: "password",
+                sortOrder: isSort ? "asc" : "dsc",
+              })
+            );
+          }}
           className="px-4 py-1 text-left border cursor-pointer hover:bg-[#3b387f]"
         >
           <div className="flex flex-row items-center justify-between">
@@ -59,7 +76,15 @@ export const TableHeader = () => {
           </div>
         </th>
         <th
-          onClick={toggleSort}
+          onClick={() => {
+            toggleSort();
+            dispatch(
+              sortDomains({
+                sortBy: "domain",
+                sortOrder: isSort ? "asc" : "dsc",
+              })
+            );
+          }}
           className="px-4 py-1 text-left border cursor-pointer hover:bg-[#3b387f]"
         >
           <div className="flex flex-row items-center justify-between">

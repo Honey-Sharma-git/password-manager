@@ -11,12 +11,11 @@ export const Credentials = () => {
   const domains = useSelector((state) => {
     return state.domains;
   });
-  const [userDetails, setUserDetails] = useState({});
-  // const [domains, setDomains] = useState([]);
-
+  const [userDetails, setUserDetails] = useState({}); //Needs to update it in a/c modal.
   const data = useSelector((state) => {
     return state.addCredential;
   });
+
   const getData = async () => {
     const response = await axios.get(`${baseURL}/v1/userDomains`, {
       headers: {
@@ -32,19 +31,7 @@ export const Credentials = () => {
     getData();
   }, [data]);
 
-  console.log(
-    domains.toSorted((a, b) => {
-      let x = a.userName.toLowerCase();
-      let y = b.userName.toLowerCase();
-      if (x > y) {
-        return 1;
-      }
-      if (x < y) {
-        return -1;
-      }
-      return 0;
-    })
-  );
+ 
 
   const credentialElement = domains.map((item, index) => {
     return <TableBody key={item._id} item={item} index={index} />;
@@ -58,7 +45,7 @@ export const Credentials = () => {
     >
       <div className="overflow-y-auto h-82 relative w-full  flex flex-col items-stretch">
         <table>
-          <TableHeader />
+          <TableHeader domains={domains} />
           <tbody>{credentialElement}</tbody>
         </table>
       </div>
